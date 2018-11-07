@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SQLiteHelper extends SQLiteOpenHelper {
 
     //Sentencia SQL para crear la tabla
-    String sqlCreate = "CREATE TABLE IF NOT EXISTS anuncios(" +
+    private String sqlCreate = "CREATE TABLE IF NOT EXISTS anuncios(" +
             " id TEXT," +
             " type TEXT," +
             " title TEXT," +
@@ -53,6 +53,4 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         //Se crea la nueva versión de la tabla
         db.execSQL(sqlCreate);
     }
-
-
 }

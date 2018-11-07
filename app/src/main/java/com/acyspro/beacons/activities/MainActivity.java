@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle(R.string.app_name);
+        setTitle(getResources().getString(R.string.app_name));
 
         usdbh = new SQLiteHelper(this, "DBAnuncios", null, 3);
         db = usdbh.getWritableDatabase();
@@ -210,9 +210,7 @@ public class MainActivity extends AppCompatActivity {
                             anuncios = obtenerAnunciosBD();
                             anuncioAdapter.setAnuncios(anuncios);
                             anuncioAdapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
-                            System.out.println();
-                        } catch (SQLiteException se) {
+                        } catch (JSONException | SQLiteException e) {
                             System.out.println();
                         }
                     }
@@ -254,6 +252,8 @@ public class MainActivity extends AppCompatActivity {
 
                 } while (cursor.moveToNext());
             }
+
+            cursor.close();
 
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

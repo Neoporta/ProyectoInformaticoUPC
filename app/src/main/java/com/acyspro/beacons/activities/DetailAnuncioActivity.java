@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import com.acyspro.beacons.NewsApp;
 import com.acyspro.beacons.R;
 import com.acyspro.beacons.models.Anuncio;
 import com.androidnetworking.widget.ANImageView;
+
+import java.util.Objects;
 
 public class DetailAnuncioActivity extends AppCompatActivity {
 
@@ -32,7 +35,7 @@ public class DetailAnuncioActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         imageANImageView = findViewById(R.id.imageANImageView);
         lblTituloAnuncio = findViewById(R.id.lblTituloAnuncio);
@@ -57,7 +60,8 @@ public class DetailAnuncioActivity extends AppCompatActivity {
         imageANImageView.setErrorImageResId(R.mipmap.ic_launcher);
         imageANImageView.setImageUrl(anuncio.getImage_full_url());
         lblTituloAnuncio.setText(anuncio.getTitle());
-        lblSubTituloAnuncio.setText(anuncio.getDescription());
+        //lblSubTituloAnuncio.setText(anuncio.getDescription());
+        lblSubTituloAnuncio.setText(Html.fromHtml(anuncio.getDescription()));
 
         btnEnlaceLink.setOnClickListener(new View.OnClickListener() {
             @Override

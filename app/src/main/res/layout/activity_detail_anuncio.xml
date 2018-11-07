@@ -1,70 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".activities.DetailAnuncioActivity">
-
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        tools:context=".activities.DetailAnuncioActivity">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <com.androidnetworking.widget.ANImageView
-        android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:id="@+id/imageANImageView"/>
+        </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:id="@+id/lblTituloAnuncio"/>
-
-    <TextView
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:padding="10dp"
-        android:id="@+id/lblSubTituloAnuncio"/>
+        android:fillViewport="true">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/btnEnlaceLink"
-        android:visibility="gone"
-        android:text="Enlace Link"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/button_corner_radius"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/btnEnlaceVideo"
-        android:visibility="gone"
-        android:text="Enlace Video"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/button_corner_radius"/>
+            <com.androidnetworking.widget.ANImageView
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:id="@+id/imageANImageView"/>
 
-</LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:id="@+id/lblTituloAnuncio"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:id="@+id/lblSubTituloAnuncio"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="10dp"
+                android:id="@+id/btnEnlaceLink"
+                android:visibility="gone"
+                android:text="@string/button_link"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_corner_radius"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="10dp"
+                android:id="@+id/btnEnlaceVideo"
+                android:visibility="gone"
+                android:text="@string/button_video"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_corner_radius"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    </LinearLayout>

@@ -1,5 +1,6 @@
 package com.acyspro.beacons.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -22,7 +23,7 @@ import java.util.List;
 import static java.security.AccessController.getContext;
 
 public class AnuncioAdapter extends RecyclerView.Adapter<AnuncioAdapter.ViewHolder> {
-    List<Anuncio> anuncios;
+    private List<Anuncio> anuncios;
 
     public void setAnuncios(List<Anuncio> anuncios) { this.anuncios = anuncios; }
 
@@ -32,8 +33,7 @@ public class AnuncioAdapter extends RecyclerView.Adapter<AnuncioAdapter.ViewHold
         View view = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.card_anuncio, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class AnuncioAdapter extends RecyclerView.Adapter<AnuncioAdapter.ViewHold
         holder.logoAnuncioANImageView.setErrorImageResId(R.mipmap.ic_launcher);
         holder.logoAnuncioANImageView.setImageUrl(anuncios.get(position).getImage_pre_url());
         holder.titleTextView.setText(anuncios.get(position).getTitle());
-        holder.subTitleTextView.setText(anuncios.get(position).getDescription());
+        holder.subTitleTextView.setText(anuncios.get(position).getDescription().substring(0,100) + "...");
 
         holder.anuncioCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +61,12 @@ public class AnuncioAdapter extends RecyclerView.Adapter<AnuncioAdapter.ViewHold
         return anuncios.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         CardView anuncioCardView;
         ANImageView logoAnuncioANImageView;
         TextView titleTextView;
         TextView subTitleTextView;
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             anuncioCardView = itemView.findViewById(R.id.anuncioCardView);
             logoAnuncioANImageView = itemView.findViewById(R.id.logoAnuncioANImageView);
