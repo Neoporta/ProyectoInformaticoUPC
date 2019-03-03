@@ -32,8 +32,9 @@
             android:orientation="vertical">
 
             <com.androidnetworking.widget.ANImageView
+                android:layout_gravity="top"
                 android:layout_width="match_parent"
-                android:layout_height="270dp"
+                android:layout_height="260dp"
                 android:id="@+id/imageANImageView"/>
 
             <TextView
@@ -51,32 +52,40 @@
                 android:padding="10dp"
                 android:id="@+id/lblSubTituloAnuncio"/>
 
-            <Button
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="10dp"
-                android:id="@+id/btnEnlaceLink"
-                android:visibility="gone"
-                android:text="@string/button_link"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:textColor="#FFFFFF"
-                android:background="@drawable/button_corner_radius"/>
+                android:paddingTop="20dp"
+                android:paddingBottom="50dp"
+                android:orientation="horizontal">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="10dp"
-                android:id="@+id/btnEnlaceVideo"
-                android:visibility="gone"
-                android:text="@string/button_video"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:textColor="#FFFFFF"
-                android:background="@drawable/button_corner_radius"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/btnEnlaceLink"
+                    android:visibility="gone"
+                    android:text="@string/button_link"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/button_corner_radius"/>
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/btnEnlaceVideo"
+                    android:visibility="gone"
+                    android:text="@string/button_video"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/button_corner_radius"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

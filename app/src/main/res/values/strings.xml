@@ -2,7 +2,13 @@
     <string name="app_name">DigiCupon Beta 0.5</string>
 
     <string name="title_activity_intro">DigiCupon</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="dummy_content">Colegio\nJLB</string>
     <string name="button_link">Enlace link</string>
     <string name="button_video">Enlace Video</string>
+    <string name="appToken">5d54a9530cce24ce235bc8290b835414</string>
+    <string name="appId">juanka-your-own-app-e23</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

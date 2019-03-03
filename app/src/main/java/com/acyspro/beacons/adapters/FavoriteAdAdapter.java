@@ -1,8 +1,6 @@
 package com.acyspro.beacons.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -14,22 +12,19 @@ import android.widget.TextView;
 import com.acyspro.beacons.NewsApp;
 import com.acyspro.beacons.R;
 import com.acyspro.beacons.activities.DetailAnuncioActivity;
-import com.acyspro.beacons.models.Anuncio;
-import com.acyspro.beacons.services.SQLiteHelper;
+import com.acyspro.beacons.models.FavoriteAd;
 import com.androidnetworking.widget.ANImageView;
 
 import java.util.List;
 
-import static java.security.AccessController.getContext;
+public class FavoriteAdAdapter extends RecyclerView.Adapter<FavoriteAdAdapter.ViewHolder> {
+    private List<FavoriteAd> favoriteAds;
 
-public class AnuncioAdapter extends RecyclerView.Adapter<AnuncioAdapter.ViewHolder> {
-    private List<Anuncio> anuncios;
-
-    public void setAnuncios(List<Anuncio> anuncios) { this.anuncios = anuncios; }
+    public void setfavoriteAds(List<FavoriteAd> favoriteAds) { this.favoriteAds = favoriteAds; }
 
     @NonNull
     @Override
-    public AnuncioAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavoriteAdAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.card_anuncio, parent, false);
@@ -37,18 +32,18 @@ public class AnuncioAdapter extends RecyclerView.Adapter<AnuncioAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AnuncioAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull FavoriteAdAdapter.ViewHolder holder, final int position) {
 
         holder.logoAnuncioANImageView.setDefaultImageResId(R.mipmap.ic_launcher);
         holder.logoAnuncioANImageView.setErrorImageResId(R.mipmap.ic_launcher);
-        holder.logoAnuncioANImageView.setImageUrl(anuncios.get(position).getImage_pre_url());
-        holder.titleTextView.setText(anuncios.get(position).getTitle());
-        holder.subTitleTextView.setText(anuncios.get(position).getDescription());
+        holder.logoAnuncioANImageView.setImageUrl(favoriteAds.get(position).getImage_pre_url());
+        holder.titleTextView.setText(favoriteAds.get(position).getTitle());
+        holder.subTitleTextView.setText(favoriteAds.get(position).getDescription());
 
         holder.anuncioCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewsApp.getInstance().getService().setCurrentAnuncio(anuncios.get(position));
+                NewsApp.getInstance().getService().setCurrentFavoriteAd(favoriteAds.get(position));
                 Intent intent = new Intent(v.getContext(), DetailAnuncioActivity.class);
                 v.getContext().startActivity(intent);
             }
@@ -58,7 +53,7 @@ public class AnuncioAdapter extends RecyclerView.Adapter<AnuncioAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return anuncios.size();
+        return favoriteAds.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

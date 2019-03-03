@@ -10,8 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.acyspro.beacons.NewsApp;
 import com.acyspro.beacons.R;
 import com.acyspro.beacons.models.Anuncio;
@@ -61,7 +59,7 @@ public class DetailAnuncioActivity extends AppCompatActivity {
         imageANImageView.setImageUrl(anuncio.getImage_full_url());
         lblTituloAnuncio.setText(anuncio.getTitle());
         //lblSubTituloAnuncio.setText(anuncio.getDescription());
-        lblSubTituloAnuncio.setText(Html.fromHtml(anuncio.getDescription()));
+        lblSubTituloAnuncio.setText(Html.fromHtml(anuncio.getContent()));
 
         btnEnlaceLink.setOnClickListener(new View.OnClickListener() {
             @Override

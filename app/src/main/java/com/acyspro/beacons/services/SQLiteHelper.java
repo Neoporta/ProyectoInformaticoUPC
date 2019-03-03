@@ -9,7 +9,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     //Sentencia SQL para crear la tabla
     private String sqlCreate = "CREATE TABLE IF NOT EXISTS anuncios(" +
             " id TEXT," +
-            " type TEXT," +
             " title TEXT," +
             " description TEXT," +
             " image_full_name TEXT," +
@@ -19,6 +18,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             " video_url TEXT," +
             " link_url TEXT," +
             " created_at TEXT," +
+            " content TEXT," +
+            " favorite TEXT," +
             " atributo1 TEXT," +
             " atributo2 TEXT," +
             " atributo3 TEXT," +
