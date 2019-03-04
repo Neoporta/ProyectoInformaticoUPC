@@ -43,7 +43,7 @@ public class FavoriteAdFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_favorite_ad, container, false);
 
-        usdbh = new SQLiteHelper(getContext(), "DBAnuncios", null, 5);
+        usdbh = new SQLiteHelper(getContext(), "DBAnuncios", null, 6);
         db = usdbh.getWritableDatabase();
 
         anuncioRecyclerView = view.findViewById(R.id.recycler_view_favorite);

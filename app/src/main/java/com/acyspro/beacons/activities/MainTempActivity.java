@@ -232,7 +232,13 @@ public class MainTempActivity extends AppCompatActivity {
                             cursor.getString(7),
                             cursor.getString(8),
                             cursor.getString(9),
-                            cursor.getString(10), "0"));
+                            cursor.getString(10),
+                            "0",
+                            cursor.getString(11),
+                            cursor.getString(12),
+                            cursor.getString(13),
+                            cursor.getString(14),
+                            null));
 
                 } while (cursor.moveToNext());
             }

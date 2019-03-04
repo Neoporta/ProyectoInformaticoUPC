@@ -21,6 +21,11 @@ public class Anuncio {
     private String created_at;
     private String content;
     private String favorite;
+    private String client_id;
+    private String campaign_id;
+    private String ad_id;
+    private String beacon_id;
+    private String user_id;
 
     public Anuncio() {
     }
@@ -36,7 +41,12 @@ public class Anuncio {
                    String link_url,
                    String created_at,
                    String content,
-                   String favorite) {
+                   String favorite,
+                   String client_id,
+                   String campaign_id,
+                   String ad_id,
+                   String beacon_id,
+                   String user_id) {
 
         this.id = id;
         this.title = title;
@@ -50,6 +60,11 @@ public class Anuncio {
         this.created_at = created_at;
         this.content = content;
         this.favorite = favorite;
+        this.client_id = client_id;
+        this.campaign_id = campaign_id;
+        this.ad_id = ad_id;
+        this.beacon_id = beacon_id;
+        this.user_id = user_id;
     }
 
     public String getId() {
@@ -184,5 +199,45 @@ public class Anuncio {
 
     public void setFavorite(String favorite) {
         this.favorite = favorite;
+    }
+
+    public String getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
+    }
+
+    public String getCampaign_id() {
+        return campaign_id;
+    }
+
+    public void setCampaign_id(String campaign_id) {
+        this.campaign_id = campaign_id;
+    }
+
+    public String getAd_id() {
+        return ad_id;
+    }
+
+    public void setAd_id(String ad_id) {
+        this.ad_id = ad_id;
+    }
+
+    public String getBeacon_id() {
+        return beacon_id;
+    }
+
+    public void setBeacon_id(String beacon_id) {
+        this.beacon_id = beacon_id;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 }

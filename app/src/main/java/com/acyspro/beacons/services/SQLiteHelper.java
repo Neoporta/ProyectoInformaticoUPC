@@ -20,13 +20,17 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             " created_at TEXT," +
             " content TEXT," +
             " favorite TEXT," +
+            " client_id TEXT," +
+            " campaign_id TEXT," +
+            " ad_id TEXT," +
+            " beacon_id TEXT," +
+            " user_id TEXT," +
             " atributo1 TEXT," +
             " atributo2 TEXT," +
             " atributo3 TEXT," +
             " atributo4 TEXT," +
             " atributo5 TEXT," +
             " PRIMARY KEY (id))";
-
 
     public SQLiteHelper(Context contexto, String nombre, SQLiteDatabase.CursorFactory factory, int version) {
         super(contexto, nombre, factory, version);
