@@ -66,7 +66,7 @@ public class IntroActivity extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable(){
             public void run() {
-                Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+                Intent intent = new Intent(IntroActivity.this, FacebookLoginActivity.class);
                 startActivity(intent);
                 finish();
             }

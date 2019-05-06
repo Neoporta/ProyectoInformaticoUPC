@@ -26,6 +26,8 @@ public class Anuncio {
     private String ad_id;
     private String beacon_id;
     private String user_id;
+    private String atributo1;
+    private String atributo2;
 
     public Anuncio() {
     }
@@ -46,7 +48,9 @@ public class Anuncio {
                    String campaign_id,
                    String ad_id,
                    String beacon_id,
-                   String user_id) {
+                   String user_id,
+                   String atributo1,
+                   String atributo2) {
 
         this.id = id;
         this.title = title;
@@ -65,6 +69,8 @@ public class Anuncio {
         this.ad_id = ad_id;
         this.beacon_id = beacon_id;
         this.user_id = user_id;
+        this.atributo1 = atributo1;
+        this.atributo2 = atributo2;
     }
 
     public String getId() {
@@ -239,5 +245,21 @@ public class Anuncio {
 
     public void setUser_id(String user_id) {
         this.user_id = user_id;
+    }
+
+    public String getAtributo1() {
+        return atributo1;
+    }
+
+    public void setAtributo1(String atributo1) {
+        this.atributo1 = atributo1;
+    }
+
+    public String getAtributo2() {
+        return atributo2;
+    }
+
+    public void setAtributo2(String atributo2) {
+        this.atributo2 = atributo2;
     }
 }

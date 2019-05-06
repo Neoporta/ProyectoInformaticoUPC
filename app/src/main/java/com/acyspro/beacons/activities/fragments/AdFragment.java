@@ -1,12 +1,9 @@
 package com.acyspro.beacons.activities.fragments;
 
-import android.app.Activity;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteStatement;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
+import static com.acyspro.beacons.services.Utils.sendStatics;
 import com.acyspro.beacons.R;
 import com.acyspro.beacons.adapters.AnuncioAdapter;
 import com.acyspro.beacons.models.Anuncio;
@@ -24,7 +21,6 @@ import com.acyspro.beacons.services.SQLiteHelper;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.Requirement;
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.RequirementsWizardFactory;
@@ -34,18 +30,14 @@ import com.estimote.proximity_sdk.api.ProximityObserverBuilder;
 import com.estimote.proximity_sdk.api.ProximityZone;
 import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
 import com.estimote.proximity_sdk.api.ProximityZoneContext;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
-
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -186,35 +178,37 @@ public class AdFragment extends Fragment {
                             String sql = "INSERT INTO anuncios (id, title, description," +
                                     " image_full_name, image_pre_name, image_full_url, image_pre_url," +
                                     " video_url, link_url, created_at, content, favorite," +
-                                    " client_id, campaign_id, ad_id, beacon_id, user_id)" +
-                                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                    " client_id, campaign_id, ad_id, beacon_id, user_id, atributo1, atributo2)" +
+                                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                             SQLiteStatement stmt = db.compileStatement(sql);
 
                             String client_id = response.getJSONObject("data").getString("client_id");
-                            String campaign_id = response.getJSONObject("data").getJSONObject("ad").getString("campaign_id");
-                            String ad_id = response.getJSONObject("data").getJSONObject("ad").getString("id");
+                            String campaign_id = response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("campaign_id");
+                            String ad_id = response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("id");
                             String beacon_id = response.getJSONObject("data").getString("beacon_id");
                             String action = "VISTO";
                             String user_id = "";
 
-                            stmt.bindString(1, response.getJSONObject("data").getJSONObject("ad").getString("id"));
-                            stmt.bindString(2, response.getJSONObject("data").getJSONObject("ad").getString("title"));
-                            stmt.bindString(3, response.getJSONObject("data").getJSONObject("ad").getString("description"));
-                            stmt.bindString(4, response.getJSONObject("data").getJSONObject("ad").getString("image_full_name"));
-                            stmt.bindString(5, response.getJSONObject("data").getJSONObject("ad").getString("image_pre_name"));
-                            stmt.bindString(6, response.getJSONObject("data").getJSONObject("ad").getString("image_full_url"));
-                            stmt.bindString(7, response.getJSONObject("data").getJSONObject("ad").getString("image_pre_url"));
-                            stmt.bindString(8, response.getJSONObject("data").getJSONObject("ad").getString("video_url"));
-                            stmt.bindString(9, response.getJSONObject("data").getJSONObject("ad").getString("link_url"));
+                            stmt.bindString(1, response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("id"));
+                            stmt.bindString(2, response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("title"));
+                            stmt.bindString(3, response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("description"));
+                            stmt.bindString(4, response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("image_full_name"));
+                            stmt.bindString(5, response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("image_pre_name"));
+                            stmt.bindString(6, response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("image_full_url"));
+                            stmt.bindString(7, response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("image_pre_url"));
+                            stmt.bindString(8, response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("video_url"));
+                            stmt.bindString(9, response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("link_url"));
                             stmt.bindString(10, fechaHoy);
-                            stmt.bindString(11, response.getJSONObject("data").getJSONObject("ad").getString("body"));
+                            stmt.bindString(11, response.getJSONObject("data").getJSONArray("ad").getJSONObject(0).getString("body"));
                             stmt.bindString(12, "0");
                             stmt.bindString(13, client_id);
                             stmt.bindString(14, campaign_id);
                             stmt.bindString(15, ad_id);
                             stmt.bindString(16, beacon_id);
                             stmt.bindString(17, "");
+                            stmt.bindString(18, "0");
+                            stmt.bindString(19, action);
                             stmt.execute();
                             stmt.close();
 
@@ -224,7 +218,7 @@ public class AdFragment extends Fragment {
                             anuncioAdapter.setAnuncios(anuncios);
                             anuncioAdapter.notifyDataSetChanged();
                         } catch (JSONException | SQLiteException e) {
-                            System.out.println();
+                            System.out.println(e.getMessage());
                         }
                     }
 
@@ -242,7 +236,7 @@ public class AdFragment extends Fragment {
             String sql = "SELECT id, title, description," +
                     "            image_full_name, image_pre_name, image_full_url, image_pre_url," +
                     "            video_url, link_url, created_at, content, client_id, campaign_id," +
-                    "            ad_id, beacon_id" +
+                    "            ad_id, beacon_id, atributo1, atributo2" +
                     "  FROM [anuncios]" +
                     "  WHERE 1 = 1" +
                     "  AND favorite = '0'" +
@@ -269,7 +263,9 @@ public class AdFragment extends Fragment {
                             cursor.getString(12),
                             cursor.getString(13),
                             cursor.getString(14),
-                            null));
+                            null,
+                            cursor.getString(15),
+                            cursor.getString(16)));
 
                 } while (cursor.moveToNext());
             }
@@ -280,49 +276,6 @@ public class AdFragment extends Fragment {
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return anuncios;
-    }
-
-    private void sendStatics(String client_id,
-                             String campaign_id,
-                             String ad_id,
-                             String action,
-                             String beacon_id,
-                             String user_id) {
-
-        Calendar c = Calendar.getInstance();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        dateFormat.setTimeZone(c.getTimeZone());
-        String fechaHoy = dateFormat.format(c.getTime());
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("client_id", client_id);
-            jsonObject.put("campaign_id", campaign_id);
-            jsonObject.put("ad_id", ad_id);
-            jsonObject.put("action", action);
-            jsonObject.put("fecha_hora", fechaHoy);
-            jsonObject.put("beacon_id", beacon_id);
-            jsonObject.put("user_id", user_id);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        AndroidNetworking.post("http://157.230.11.57:8080/api/statistics")
-                .addJSONObjectBody(jsonObject) // posting json
-                .setTag("test")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        // do anything with response
-                    }
-                    @Override
-                    public void onError(ANError error) {
-                        // handle error
-                    }
-                });
-
     }
 
 }
